@@ -94,3 +94,18 @@ class Formula(object):
     def __unicode__(self):
         return self.label_name
 
+
+# MLC参数表
+class MLC(object):
+    MLC_Model = models.CharField(max_length=20, verbose_name=u"MLC型号", default="")
+    VaneNumb = models.IntegerField(verbose_name=u"叶片对数", null=True, blank=True)
+    Manufacturer = models.CharField(max_length=20, verbose_name=u"生产厂家", null=True, blank=True)
+    VaneWidth = models.DecimalField(max_digits=4, decimal_places=1, verbose_name=u'等中心叶片宽度')
+
+    class Meta:
+        verbose_name = "MLC参数表"
+        verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return self.MLC_Model
+

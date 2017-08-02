@@ -10,13 +10,82 @@ from BasicInfo.models import Rzxx
 # 光射野重合性
 class RadiationFit(object):
     sbbh = models.ForeignKey(Rzxx, verbose_name='设备编号')
-    FieldSize = models.CharField(max_length=10, verbose_name='射野大小')
+    MU = models.IntegerField(verbose_name='跳数')
+    FieldSize = models.CharField(max_length=10, verbose_name='射野大小', default='10cm×10cm')
     GTValue = models.DecimalField(max_digits=4, decimal_places=2,   verbose_name=u"头脚方向值", default="")
     LRValue = models.DecimalField(max_digits=4, decimal_places=2,   verbose_name=u"左右方向值", default="")
     Estimate = models.BooleanField(verbose_name=u'达标判断', null=True, blank=True, default=''),
 
     class Meta:
         verbose_name = "光射野重合性"
+        verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return self.FieldSize
+
+
+# 射野大小
+class FieldSize(object):
+    sbbh = models.ForeignKey(Rzxx, verbose_name='设备编号')
+    FieldSize = models.CharField(max_length=10, verbose_name='射野大小', choices=(("2cm×2cm", "2cm×2cm"), ("6cm×6cm", "6cm×6cm"), ("10cm×10cm", "10cm×10cm")), default='2cm×2cm')
+    MU = models.IntegerField(verbose_name='跳数')
+    GTValue = models.DecimalField(max_digits=4, decimal_places=2,   verbose_name=u"头脚方向值", default="")
+    LRValue = models.DecimalField(max_digits=4, decimal_places=2,   verbose_name=u"左右方向值", default="")
+    Estimate = models.BooleanField(verbose_name=u'达标判断', null=True, blank=True, default=''),
+
+    class Meta:
+        verbose_name = "射野大小"
+        verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return self.FieldSize
+
+
+# 半影大小
+class Penumbra(object):
+    sbbh = models.ForeignKey(Rzxx, verbose_name='设备编号')
+    FieldSize = models.CharField(max_length=10, verbose_name='射野大小', choices=(("2cm×2cm", "2cm×2cm"), ("6cm×6cm", "6cm×6cm"), ("10cm×10cm", "10cm×10cm")), default='2cm×2cm')
+    MU = models.IntegerField(verbose_name='跳数')
+    GTValue = models.DecimalField(max_digits=4, decimal_places=2,   verbose_name=u"头脚方向值", default="")
+    LRValue = models.DecimalField(max_digits=4, decimal_places=2,   verbose_name=u"左右方向值", default="")
+    Estimate = models.BooleanField(verbose_name=u'达标判断', null=True, blank=True, default=''),
+
+    class Meta:
+        verbose_name = "半影大小"
+        verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return self.FieldSize
+
+
+# 平坦度
+class Flatness(object):
+    sbbh = models.ForeignKey(Rzxx, verbose_name='设备编号')
+    FieldSize = models.CharField(max_length=10, verbose_name='射野大小', default='10cm×10cm')
+    MU = models.IntegerField(verbose_name='跳数')
+    GTValue = models.DecimalField(max_digits=4, decimal_places=2, verbose_name=u"头脚方向值", default="")
+    LRValue = models.DecimalField(max_digits=4, decimal_places=2, verbose_name=u"左右方向值", default="")
+    # Estimate = models.BooleanField(verbose_name=u'达标判断', null=True, blank=True, default=''),
+
+    class Meta:
+        verbose_name = "平坦度"
+        verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return self.FieldSize
+
+
+# 对称性
+class Symmetry(object):
+    sbbh = models.ForeignKey(Rzxx, verbose_name='设备编号')
+    FieldSize = models.CharField(max_length=10, verbose_name='射野大小', default='10cm×10cm')
+    MU = models.IntegerField(verbose_name='跳数')
+    GTValue = models.DecimalField(max_digits=4, decimal_places=2, verbose_name=u"头脚方向值", default="")
+    LRValue = models.DecimalField(max_digits=4, decimal_places=2, verbose_name=u"左右方向值", default="")
+    # Estimate = models.BooleanField(verbose_name=u'达标判断', null=True, blank=True, default=''),
+
+    class Meta:
+        verbose_name = "对称性"
         verbose_name_plural = verbose_name
 
     def __unicode__(self):
