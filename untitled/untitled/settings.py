@@ -48,7 +48,6 @@ INSTALLED_APPS = [
     'MLC',
     'MachPrecision',
     'OutputPerfor',
-    'TPS',
     'xadmin',
     'crispy_forms',
 ]
@@ -141,7 +140,10 @@ USE_TZ=False    # 如果为True则显示世界时区格式
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT= '/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+STATIC_ROOT = '/'
 
 
 AUTH_USER_MODEL = "Users.UserProfile"

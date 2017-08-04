@@ -19,7 +19,7 @@ from django.db import models
 
 
 # 医院字典
-class Yyxx(object):
+class Yyxx(models.Model):
     yymc = models.CharField(max_length=50, verbose_name='医院名称')
     chengshi = models.CharField(max_length=50, verbose_name='所在城市')
     dengj = models.CharField(max_length=50, verbose_name='医院等级')
@@ -34,7 +34,7 @@ class Yyxx(object):
 
 
 # 厂家字典
-class Sbcj(object):
+class Sbcj(models.Model):
     cjmc = models.CharField(max_length=50, verbose_name='厂家名称')
     szdq = models.CharField(max_length=50, verbose_name='所在国家')
 
@@ -47,7 +47,7 @@ class Sbcj(object):
 
 
 # 设备字典
-class Sbxh(object):
+class Sbxh(models.Model):
     sbxh = models.CharField(max_length=50, verbose_name='设备型号')
     leix = models.CharField(max_length=50, verbose_name='设备类型')
     sscj = models.ForeignKey(Sbcj, default='', verbose_name='所属厂家')
@@ -62,8 +62,8 @@ class Sbxh(object):
 
 
 # 医院入组情况表
-class Rzxx(object):
-    sbbh=models.CharField(max_lengh=10, verbose_name=u'设备编号')
+class Rzxx(models.Model):
+    sbbh=models.CharField(max_length=10, verbose_name=u'设备编号')
     yymc=models.ForeignKey(Yyxx, verbose_name='医院名称')
     sbcj=models.ForeignKey(Sbcj, verbose_name='设备厂家')
     sbxh=models.ForeignKey(Sbxh, max_length=50, verbose_name='设备型号')
@@ -82,7 +82,7 @@ class Rzxx(object):
         # return str('self.yymc')
 
 # 所需公式存放表
-class Formula(object):
+class Formula(models.Model):
     label_name = models.CharField(max_length=20, verbose_name=u"表名称", default="")
     Formula = models.DateField(max_length=20, verbose_name=u"公式", null=True, blank=True)
     DeviationValue = models.DecimalField(max_digits=3, decimal_places=2, verbose_name=u"偏差值", null=True, blank=True)
@@ -96,11 +96,11 @@ class Formula(object):
 
 
 # MLC参数表
-class MLC(object):
+class MLC(models.Model):
     MLC_Model = models.CharField(max_length=20, verbose_name=u"MLC型号", default="")
-    VaneNumb = models.IntegerField(verbose_name=u"叶片对数", null=True, blank=True)
+    LeafNumb = models.IntegerField(verbose_name=u"叶片对数", null=True, blank=True)
     Manufacturer = models.CharField(max_length=20, verbose_name=u"生产厂家", null=True, blank=True)
-    VaneWidth = models.DecimalField(max_digits=4, decimal_places=1, verbose_name=u'等中心叶片宽度')
+    LeafWidth = models.DecimalField(max_digits=4, decimal_places=1, verbose_name=u'等中心叶片宽度')
 
     class Meta:
         verbose_name = "MLC参数表"
@@ -108,4 +108,19 @@ class MLC(object):
 
     def __unicode__(self):
         return self.MLC_Model
+
+
+# TPS参数表
+class TPS(models.Model):
+    TPS_Model = models.CharField(max_length=50, verbose_name=u'TPS型号')
+    Manufacturer = models.CharField(max_length=20, verbose_name=u"生产厂家", null=True, blank=True)
+    Algorithmic = models.CharField(max_length=50, verbose_name=u'算法')
+    Technique = models.CharField(max_length=50,verbose_name='技术方法')
+
+    class Meta:
+        verbose_name = 'TPS参数'
+        verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return self.TPS_Model
 
