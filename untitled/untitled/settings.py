@@ -147,3 +147,7 @@ STATIC_ROOT = '/'
 
 
 AUTH_USER_MODEL = "Users.UserProfile"
+
+AUTHENTICATION_BACKENDS = (
+    'Users.views.CustomBackend',
+)
