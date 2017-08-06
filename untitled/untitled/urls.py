@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 """untitled URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -18,12 +19,13 @@ from django.conf.urls import url
 from django.contrib import admin
 import xadmin
 from django.views.generic import TemplateView
-from Users.views import user_login
-
+# from Users.views import user_login
+from Users.views import LoginView
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
     # url('^login/$', TemplateView.as_view(template_name="login.html"), name="login"),
     url('^$', TemplateView.as_view(template_name="index.html"), name="index"),
-    url('^login/$', user_login, name="login"),
+    # url('^login/$', user_login, name="login"),         # 没有()传的句柄
+    url('^login/$', LoginView.as_view(), name="login"),  # 有()传得到函数
 ]
