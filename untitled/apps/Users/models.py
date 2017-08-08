@@ -6,7 +6,7 @@ from django.db import models
 
 # Create your models here.
 from django.contrib.auth.models import AbstractUser
-
+from datetime import datetime
 
 # 用户表扩展
 class UserProfile(AbstractUser):
@@ -23,3 +23,18 @@ class UserProfile(AbstractUser):
 
     def __unicode__(self):  # 不定义就不能打印字符串
         return self.username
+
+
+# 邮箱验证码
+class EmailVerifyRecord(models.Model):
+    code = models.CharField(max_length=20, verbose_name=u"验证码")
+    email = models.EmailField(max_length=50, verbose_name=u"邮箱")
+    send_type = models.CharField(verbose_name=u"验证码类型", max_length=50, choices=(("register", u"注册"), ("forget", u"找回密码")))
+    send_time = models.DateTimeField(verbose_name=u"验证时间", default=datetime.now)
+
+    class Meta:
+        verbose_name = u"邮箱验证码"
+        verbose_name_plural = verbose_name
+
+    def __unicode__(self):
+        return '{0}({1})'.format(self.code, self.email)
