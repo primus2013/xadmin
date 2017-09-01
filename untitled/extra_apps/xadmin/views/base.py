@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import copy
 import functools
 import datetime
@@ -317,8 +318,8 @@ class CommAdminView(BaseAdminView):
     base_template = 'xadmin/base_site.html'
     menu_template = 'xadmin/includes/sitemenu_default.html'
 
-    site_title = getattr(settings,"XADMIN_TITLE",_(u"Django Xadmin"))
-    site_footer = getattr(settings,"XADMIN_FOOTER_TITLE",_(u"my-company.inc"))
+    site_title = getattr(settings,"XADMIN_TITLE",_(u"加速器質控項目"))
+    site_footer = getattr(settings,"XADMIN_FOOTER_TITLE",_(u"武漢協和腫瘤醫院"))
 
     global_models_icon = {}
     default_model_icon = None

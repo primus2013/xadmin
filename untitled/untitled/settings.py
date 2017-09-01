@@ -135,6 +135,7 @@ LANGUAGE_CODE='zh-hans'
 TIME_ZONE='Asia/Shanghai'
 USE_TZ=False    # 如果为True则显示世界时区格式
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
